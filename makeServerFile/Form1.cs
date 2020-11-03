@@ -1,7 +1,5 @@
-﻿using IWshRuntimeLibrary;
-using System;
+﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -17,18 +15,7 @@ namespace makeServerFile
             InitializeComponent();
         }
 
-        public static void CreateShortcut(string shortcutName, string shortcutPath, string targetFileLocation)
-        {
-            string shortcutLocation = System.IO.Path.Combine(shortcutPath, shortcutName + ".lnk");
-            WshShell shell = new WshShell();
-            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
-
-            shortcut.Description = "Link to Server File";
-            shortcut.TargetPath = targetFileLocation;
-            shortcut.Save();
-        }
-
-        private void CreateFile(string path, string dataToWrite)
+        private void CreateFile(string path, string dataToWrite) //Custom file creator. Works really well.
         {
             try
             {
@@ -54,28 +41,28 @@ namespace makeServerFile
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // Handles the folder selection.
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
-            folder.SelectedPath = @"C:\Users\" + userName + @"\Desktop";
+            folder.SelectedPath = @"C:\Users\" + userName + @"\Desktop"; // Starts in the Desktop of the current user.
             folder.ShowNewFolderButton = false;
             DialogResult result = folder.ShowDialog();
-            if(result == DialogResult.OK)
+            if(result == DialogResult.OK) // Not really needed, but whatever.
             {
                 textBox1.Text = folder.SelectedPath;
-                textBox2.Text = Path.GetDirectoryName(textBox1.Text + @"\Server Start.bat");
+                textBox2.Text = Path.GetDirectoryName(textBox1.Text + @"\Server Start.bat"); // Grabs the name of the directory for the the bat file that launches the server.
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            StringBuilder startBat = new StringBuilder();
-            StringBuilder settingsBat = new StringBuilder();
-            StringBuilder startServer = new StringBuilder();
+            StringBuilder startBat = new StringBuilder(); // The start bat file
+            StringBuilder settingsBat = new StringBuilder(); // The settings bat file
+            StringBuilder startServer = new StringBuilder(); // The server starting bat file on the Desktop
             
-            string filePath = textBox1.Text + @"\Server Start";
-            string filePath2 = textBox1.Text + @"\settings";
-            string filePath3 = @"C:\Users\" + userName + @"\Desktop\Start Minecraft Server.bat";
+            string filePath = textBox1.Text + @"\Server Start"; // Location of the internal Server Start bat File
+            string filePath2 = textBox1.Text + @"\settings"; // Location of the internal Settings bat file
+            string filePath3 = @"C:\Users\" + userName + @"\Desktop\Start Minecraft Server.bat"; // Location of the Start Server file on the desktop
 
             //Making Server Start File
 
@@ -86,7 +73,6 @@ java -Xmx%MAX_RAM% -Xms%MIN_RAM% -jar ");
             startBat.Append(textBox4.Text + ".jar");
 
             startBat.Append(" nogui \npause");
-
 
             //End Server Start File
 
@@ -119,43 +105,43 @@ java -Xmx%MAX_RAM% -Xms%MIN_RAM% -jar ");
 
             //End Start File Link
 
-            CreateFile(filePath + ".bat", startBat.ToString());
-            CreateFile(filePath2 + ".bat", settingsBat.ToString());
-            CreateFile(filePath3, startServer.ToString());
+            CreateFile(filePath + ".bat", startBat.ToString()); // Creates the files
+            CreateFile(filePath2 + ".bat", settingsBat.ToString()); // Creates the files
+            CreateFile(filePath3, startServer.ToString()); // Creates the files
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) // Helper for the minecraft server file
         {
             MessageBox.Show("This should be in your file folder. Something along the lines of \n\"minecraft_server.1.X.X\"");
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e) // Helper for the name of the parent folder
         {
             MessageBox.Show("This is the name of the file folder that you want the server file made for.");
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void radioButton1_CheckedChanged(object sender, EventArgs e) // Settings for easy ram selection
         {
             numericUpDown1.Value = 4069;
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void radioButton2_CheckedChanged(object sender, EventArgs e) // Settings for easy ram selection
         {
             numericUpDown1.Value = 8165;
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void radioButton3_CheckedChanged(object sender, EventArgs e) // Settings for easy ram selection
         {
             numericUpDown1.Value = 10213;
         }
 
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        private void radioButton4_CheckedChanged(object sender, EventArgs e) // Settings for easy ram selection
         {
             numericUpDown2.Value = numericUpDown1.Value + 1;
         }
 
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        private void radioButton5_CheckedChanged(object sender, EventArgs e) // Settings for easy ram selection
         {
             numericUpDown2.Value = numericUpDown1.Value + 1024;
         }

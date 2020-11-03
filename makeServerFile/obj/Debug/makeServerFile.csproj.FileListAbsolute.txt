@@ -1,6 +1,7 @@
 C:\Users\zaned\source\repos\makeServerFile\bin\Debug\makeServerFile.exe.config
 C:\Users\zaned\source\repos\makeServerFile\bin\Debug\makeServerFile.exe
 C:\Users\zaned\source\repos\makeServerFile\bin\Debug\makeServerFile.pdb
+C:\Users\zaned\source\repos\makeServerFile\obj\Debug\makeServerFile.csprojAssemblyReference.cache
 C:\Users\zaned\source\repos\makeServerFile\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\zaned\source\repos\makeServerFile\obj\Debug\makeServerFile.csproj.ResolveComReference.cache
 C:\Users\zaned\source\repos\makeServerFile\obj\Debug\makeServerFile.Form1.resources
